@@ -1,4 +1,5 @@
 #include <iostream>
+#include "Subject.h"
 
 int main() {
     Subject subj;
