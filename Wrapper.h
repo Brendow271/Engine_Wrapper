@@ -27,6 +27,25 @@ public:
         return ((object->*funcName)(inArgs[I]...));
     }
 
+    bool isExist(std::string name) {
+        for (auto& arg : args) {
+            if (arg.first.compare(name) == 0)
+                return true;
+        }
+        return false;
+    }
+
+    T execute(std::map<std::string, T> const& args) {
+        std::vector<T> argsVec;
+        for (auto& arg : args) {
+            if (!isExist(arg.first))
+                throw std::runtime_error("ERROR[wrapper]: This command is not in it");
+
+            argsVec.push_back(arg.second);
+        }
+        return _command(argsVec);
+    }
+
     Wrapper(Wrapper const&) = delete;
     Wrapper& operator=(Wrapper const&) = delete;
     Wrapper(Wrapper&&) = default;
