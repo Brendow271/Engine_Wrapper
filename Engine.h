@@ -12,6 +12,17 @@ public:
         }
         commands.insert({ command, wrapper });
     }
+    template<typename T>
+    T execute(const std::string &command, std::map<std::string, T> const & args) {
+        auto it = commands.find(command);
+        if (it == commands.end())
+        {
+            std::string error = "ERROR[engine]: Command " + command + " has not been registered";
+            throw std::runtime_error(error.c_str());
+        }
+        Wrapper<T>* wrapper = static_cast<Wrapper<T>*>(it->second);
+        return wrapper->execute(args);
+    }
     Engine() = default;
     Engine(Engine const&) = delete;
     Engine& operator =(Engine const&) = delete;
