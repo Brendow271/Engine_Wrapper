@@ -35,15 +35,15 @@ public:
         return false;
     }
 
-    T execute(std::map<std::string, T> const& args) {
+    T execute(std::map<std::string, T> const& Args) {
         std::vector<T> argsVec;
-        for (auto& arg : args) {
+        for (auto& arg : Args) {
             if (!isExist(arg.first))
                 throw std::runtime_error("ERROR[wrapper]: This command is not in it");
 
             argsVec.push_back(arg.second);
         }
-        return _command(argsVec);
+        return command(argsVec);
     }
 
     Wrapper(Wrapper const&) = delete;
