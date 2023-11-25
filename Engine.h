@@ -13,7 +13,7 @@ public:
         commands.insert({ command, wrapper });
     }
     template<typename T>
-    T execute(const std::string &command, std::map<std::string, T> const & args) {
+    T execute(const std::string &command, std::map<std::string, T> const args) {
         auto it = commands.find(command);
         if (it == commands.end())
         {

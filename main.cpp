@@ -18,6 +18,5 @@ int main() {
     engineD.register_command<double>(&wrapperD, "command1");
     std::cout << engineD.execute<double>("command1", {{"arg1", 4}, {"arg2", 5}}) << std::endl;
     //result: 0.8
-
     return 0;
 };
